@@ -45,11 +45,12 @@ const negative =( index)=>{
   setProducts(updateProduct)
   }
 
-const Decreesing =( index)=>{
+const removeProduct =( index)=>{
   const updateProduct = products.filter((_ , i) => i !== index)
   setProducts(updateProduct)
   }
-
+const totalPrice = products.reduce((total , product )=>
+total + product.Price * product.Quantity,0)
   return (
     <div className="app-container">
       <h1>Simple Shopping Cart</h1>
@@ -68,29 +69,38 @@ const Decreesing =( index)=>{
         />
         <button onClick={AddProduct}>Add Product</button>
       </div>
-
+<div></div>
       <ul>
+        <>
         { products.length > 0 ? products.map((product , index) => (
-          <li key={index} className="product-item">
-            <div className="product-details">
-              <div>
-                <p><strong>Product:</strong> {product.name}</p>
-                <p><strong>Price:</strong> $ {product.Price.toFixed(2)}</p>
-              </div>
-              <button onClick={()=> Decreesing(index)} className="remove-button">Remove</button>
+        <div>
+  <li key={index} className="product-item">
+          <div className="product-details">
+            <div>
+              <p><strong>Product:</strong> {product.name}</p>
+              <p><strong>Price:</strong> $ {product.Price.toFixed(2)}</p>
             </div>
+            <button onClick={()=> removeProduct (index)} className="remove-button">Remove</button>
+          </div>
 
-            <div className="quantity-controls">
-              <button onClick={()=> negative(index)}>-</button>
-              <span>{product.Quantity}</span>
-              <button onClick={()=> increesing(index)}>+</button>
-            </div>
-
-            <p>Total Price: ${product.Quantity * product.Price}</p>
-          </li>
-        )) : <h3>This cart is Empity </h3> }
+          <div className="quantity-controls">
+            <button onClick={()=> negative(index)}>-</button>
+            <span>{product.Quantity}</span>
+            <button onClick={()=> increesing(index)}>+</button>
+          </div>
+       
+        </li>
+      
+        </div>
+        
+       
+      )) : <h3>This cart is Empity </h3> }
+        </>
+        
+      
        
       </ul>
+      <h2>Total Price: ${totalPrice}</h2>
     </div>
   )
 }
