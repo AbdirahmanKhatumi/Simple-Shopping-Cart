@@ -7,13 +7,20 @@ function App() {
   const [inputPrice, setInputPrice]= useState("");
 
 const AddProduct =()=>{
-  const newProct ={
-    name : inputProduct,
-    Price: inputPrice,
-    Quantity : 1,
+  if(inputProduct !== '' && inputPrice !== ''){
+    const newProct ={
+      name : inputProduct,
+      Price:parseFloat(inputPrice),
+      Quantity : 1,
+    }
+
+    setProducts([...products , newProct])
+    setInputProduct("")
+     setInputPrice("")
+    console.log(products);
   }
-  setProducts([...products , newProct])
-  console.log(products);
+ 
+
 }
 
 const increesing =( index)=>{
@@ -61,12 +68,12 @@ const Decreesing =( index)=>{
       </div>
 
       <ul>
-        {products.map((product , index) => (
+        { products.length > 0 ? products.map((product , index) => (
           <li key={index} className="product-item">
             <div className="product-details">
               <div>
                 <p><strong>Product:</strong> {product.name}</p>
-                <p><strong>Price:</strong> $ {product.Price}</p>
+                <p><strong>Price:</strong> $ {product.Price.toFixed(2)}</p>
               </div>
               <button onClick={()=> Decreesing(index)} className="remove-button">Remove</button>
             </div>
@@ -79,7 +86,8 @@ const Decreesing =( index)=>{
 
             <p>Total Price: ${product.Quantity * product.Price}</p>
           </li>
-        ))}
+        )) : <h3>This cart is Empity </h3> }
+       
       </ul>
     </div>
   )
