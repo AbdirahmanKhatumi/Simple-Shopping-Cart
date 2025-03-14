@@ -100,7 +100,7 @@ total + product.Price * product.Quantity,0)
       
        
       </ul>
-      <h2>Total Price: ${totalPrice}</h2>
+      <h2>{ totalPrice == 0 ?  " " : <p>Total Price: $ {totalPrice}</p> }</h2>
     </div>
   )
 }
