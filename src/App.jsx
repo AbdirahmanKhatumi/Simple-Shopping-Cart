@@ -13,11 +13,10 @@ const AddProduct =()=>{
       Price:parseFloat(inputPrice),
       Quantity : 1,
     }
-
-    setProducts([...products , newProct])
-    setInputProduct("")
-     setInputPrice("")
-    console.log(products);
+    setProducts([...products , newProct]);
+    setInputProduct("");
+    setInputPrice("");
+   
   }
  
 
@@ -31,7 +30,8 @@ const updateProduct = products.map((product , i) =>{
   return product
 }
 )
-setProducts(updateProduct)
+setProducts(updateProduct);
+
 }
 
 const negative =( index)=>{
@@ -58,11 +58,13 @@ const Decreesing =( index)=>{
           type="text" 
           placeholder="Product name"  
           onChange={(e)=> setInputProduct(e.target.value)}
+          value={inputProduct}
         />
         <input 
           type="number"  
           placeholder="Price" 
           onChange={(e)=> setInputPrice(e.target.value)}
+          value={inputPrice}
         />
         <button onClick={AddProduct}>Add Product</button>
       </div>
